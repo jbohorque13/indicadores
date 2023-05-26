@@ -1,28 +1,41 @@
-import React from "react";
-import { Flex, Text, Divider } from "@react-native-material/core";
-
-import data from './assets/data.json';
-
+import React from 'react';
+import { StyleSheet } from 'react-native';
+import { Flex, Text, Divider } from '@react-native-material/core';
 // icons
 import IconArrowRight from './assets/icons/Expand_right.svg';
+import IconInfo from './assets/icons/info_light.svg';
+
+const styles = StyleSheet.create({
+  containerFlex: {
+    marginTop: 60
+  },
+  dividerStyle: { marginVertical: 6 }
+});
+
+// colores por defecto.
+const colorSecondary = '#2452bc';
 
 const App = () => {
-  
-  return  (
-  
-    <Flex fill style={{marginTop: 20}}>
-    {["Dólar","Euro","IPC","UF","UTM"].map(val => 
-      <Flex>
-        <Flex direction="row" items="center" style={{marginBottom: 2}}>
-          <Flex fill direction="column">
-            <Text variant="body1">{val}</Text>
-            <Text variant="body2" color="#2452bc">Pesos</Text>
+  // hook .useMemo Para el segundo render no realiza el computo .map lo guarda en memoria.
+  const renderListIndicators = React.useMemo<any>(() => {
+    return ['Dólar','Euro','IPC','UF','UTM'].map(val => 
+      <Flex key={val}>
+        <Flex direction='row' items='center' style={{marginBottom: 6}}>
+          <Flex fill direction='column'>
+            <Text variant='body1'>{val}</Text>
+            <Text variant='body2' color={colorSecondary}>Pesos</Text>
           </Flex>
+          <IconInfo />
           <IconArrowRight />
         </Flex>
-        <Divider style={{ marginVertical: 6}}/>
-      </Flex>  
-    )}
+        <Divider style={styles.dividerStyle}/>
+      </Flex> 
+    )
+  }, []);
+
+  return  (
+    <Flex fill style={styles.containerFlex}>
+    {renderListIndicators}
   </Flex>
   );
 }
