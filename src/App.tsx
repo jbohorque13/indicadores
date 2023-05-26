@@ -1,42 +1,39 @@
 import React from 'react';
-import { StyleSheet } from 'react-native';
-import { Flex, Text, Divider } from '@react-native-material/core';
-// icons
-import IconArrowRight from './assets/icons/Expand_right.svg';
-import IconInfo from './assets/icons/info_light.svg';
+import { useColorScheme } from 'react-native';
+import { createStackNavigator } from '@react-navigation/stack';
+import {
+  NavigationContainer,
+  DefaultTheme,
+  DarkTheme,
+} from '@react-navigation/native';
+// utils
+import { navigationRef } from '~/utils/navigation';
+// components
+import Home from '~/screens/Home';
+import Detail from '~/screens/Detail';
 
-const styles = StyleSheet.create({
-  containerFlex: {
-    marginTop: 60
-  },
-  dividerStyle: { marginVertical: 6 }
-});
+const Stack = createStackNavigator();
 
-// colores por defecto.
-const colorSecondary = '#2452bc';
+const MyTheme = {
+  ...DefaultTheme,
+  dark: true,
+};
 
 const App = () => {
-  // hook .useMemo Para el segundo render no realiza el computo .map lo guarda en memoria.
-  const renderListIndicators = React.useMemo<any>(() => {
-    return ['Dólar','Euro','IPC','UF','UTM'].map(val => 
-      <Flex key={val}>
-        <Flex direction='row' items='center' style={{marginBottom: 6}}>
-          <Flex fill direction='column'>
-            <Text variant='body1'>{val}</Text>
-            <Text variant='body2' color={colorSecondary}>Pesos</Text>
-          </Flex>
-          <IconInfo />
-          <IconArrowRight />
-        </Flex>
-        <Divider style={styles.dividerStyle}/>
-      </Flex> 
-    )
-  }, []);
-
+  const scheme = useColorScheme();
   return  (
-    <Flex fill style={styles.containerFlex}>
-    {renderListIndicators}
-  </Flex>
+    <NavigationContainer
+      ref={navigationRef}
+      theme={scheme === 'dark' ? DarkTheme : MyTheme}
+    >
+        <Stack.Navigator initialRouteName='Home'>
+          <Stack.Screen name='Home' component={Home} options={{
+              headerTitle: 'Indicadores',
+              headerTintColor: '#000000'
+            }} />
+          <Stack.Screen name='Detail' component={Detail} />
+        </Stack.Navigator>
+    </NavigationContainer>
   );
 }
 
