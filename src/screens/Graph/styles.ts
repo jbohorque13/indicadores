@@ -11,5 +11,8 @@ export const styles = StyleSheet.create({
   textTitle: {
     fontSize: 28,
     color: colorSecondary,
+  },
+  text: {
+    fontWeight: '600'
   }
 });

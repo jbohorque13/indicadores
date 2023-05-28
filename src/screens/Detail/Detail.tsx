@@ -25,7 +25,6 @@ const Home = ({ route }: StackScreenProps<RootStackParamList>) => {
   React.useEffect(() => {
     async function main () {
       if (route && route.params){
-        console.log(route.params?.indicator?.value)
         if (route.params?.indicator?.value === IndicatorType.DOLAR
           || route.params?.indicator?.value === IndicatorType.EURO
           || route.params?.indicator?.value === IndicatorType.UF

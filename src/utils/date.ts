@@ -4,7 +4,6 @@ const timeFormat: Intl.DateTimeFormatOptions = { month: '2-digit', day: '2-digit
 // fecha actual
 const now = new Date();
 const lastTenDays = new Date(new Date().setHours(-240, 0, 0));
-console.log(lastTenDays);
 const currentYear = now.getFullYear();
 // currentMonth formato yyyy/mm
 const currentMonth = `${now.toLocaleDateString('es-ES', timeFormat).substring(6, 10)}/${now.toLocaleDateString('es-ES', timeFormat).substring(3, 5)}`;

@@ -41,9 +41,6 @@ async function getResources (indicator: string) {
 
 // Recursos de hace 10 dias.
 async function getResourcesLastTenDays (indicator: string) {
-  console.log(dayInitial,
-    yearInitial,
-    monthInitial, currentMonth, currentDay)
   return instance.get(`/${indicator}/periodo/${yearInitial}/${monthInitial}/dias_i/${dayInitial}/${currentMonth}/dias_f/${currentDay}?apikey=${config.API_TOKEN}&formato=json`)
     .then(response => response.data)
     .catch(error => console.error(error));

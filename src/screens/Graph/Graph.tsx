@@ -24,7 +24,6 @@ const Home = ({ route }: StackScreenProps<RootStackParamList>) => {
   React.useEffect(() => {
     async function main () {
       if (route && route.params){
-        console.log(route.params?.indicator?.value)
         if (route.params?.indicator?.value === IndicatorType.DOLAR
           || route.params?.indicator?.value === IndicatorType.EURO
           || route.params?.indicator?.value === IndicatorType.UF
@@ -45,21 +44,27 @@ const Home = ({ route }: StackScreenProps<RootStackParamList>) => {
   const renderListIndicators = React.useMemo<any>(() => {
     if (route && route.params && resources){
       const resourcesLength = resources[route.params?.indicator?.key].length;
-      return <Flex items='center'>
-        <Flex justify='center'><Text style={styles.textTitle}>${resources[route.params?.indicator?.key][resourcesLength - 1].Valor || ''}</Text></Flex>
-        <Flex justify='evenly' direction='row'>
-          <Text> Nombre </Text>
-          <Text> {route.params?.indicator?.text || ''} </Text>
-        </Flex>
-        <Flex direction='row'>
-          <Text>Fecha</Text>
-          <Text> {resources[route.params?.indicator?.key][resourcesLength - 1].Fecha || ''} </Text>
-        </Flex>
-        <Flex direction='row'>
-          <Text>Unidad de Medida</Text>
-          <Text> {route.params?.indicator?.text2 || ''} </Text>
-        </Flex>
-      </Flex>
+      return (
+        <>
+          <Flex items='center' justify='center' minH={100} maxH={120}>
+            <Text style={styles.textTitle}>${resources[route.params?.indicator?.key][resourcesLength - 1].Valor || ''}</Text>
+          </Flex>
+          <>
+            <Flex direction='row' minH={32} maxH={36}>
+              <Box w={160}><Text style={styles.text}> Nombre </Text></Box>
+              <Text> {route.params?.indicator?.text || ''} </Text>
+            </Flex>
+            <Flex direction='row' minH={32} maxH={36}>
+              <Box w={160}><Text style={styles.text}>Fecha</Text></Box>
+              <Text> {resources[route.params?.indicator?.key][resourcesLength - 1].Fecha || ''} </Text>
+            </Flex>
+            <Flex direction='row' minH={32} maxH={36}>
+              <Box w={160}><Text style={styles.text}>Unidad de Medida</Text></Box>
+              <Text> {route.params?.indicator?.text2 || ''} </Text>
+            </Flex>
+          </>
+        </>
+      )
     }
   }, [route, resources]);
 
