@@ -11,7 +11,6 @@ interface ResourceItem {
 }
 
 const ListItem: React.FC<ResourceItem> = (item: ResourceItem) => {
-  // console.log(item);
   return (
     <Flex>
       <Flex direction='row' justify='evenly'>

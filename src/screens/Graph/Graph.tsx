@@ -57,7 +57,6 @@ const Graph = ({ route }: StackScreenProps<RootStackParamList>) => {
   const data = React.useMemo(() => {
     if (route && route.params && resources){ 
       const data = resources[route.params?.indicator?.key].map((item: ResourceItem) => parseFloat(item.Valor))
-      console.log(resources);
       return {
         labels: [
           ...resources[route.params?.indicator?.key].map((item: ResourceItem) => item.Fecha).splice(0, 2),
