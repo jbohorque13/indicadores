@@ -11,6 +11,9 @@ import { navigationRef } from '~/utils/navigation';
 // components
 import Home from '~/screens/Home';
 import Detail from '~/screens/Detail';
+import Graph from '~/screens/Graph';
+// utils
+import { routes } from './utils/routes';
 
 const Stack = createStackNavigator();
 
@@ -26,12 +29,13 @@ const App = () => {
       ref={navigationRef}
       theme={scheme === 'dark' ? DarkTheme : MyTheme}
     >
-        <Stack.Navigator initialRouteName='Home'>
-          <Stack.Screen name='Home' component={Home} options={{
+        <Stack.Navigator initialRouteName={routes.HOME.routeName}>
+          <Stack.Screen name={routes.HOME.routeName} component={Home} options={{
               headerTitle: 'Indicadores',
               headerTintColor: '#000000'
             }} />
-          <Stack.Screen name='Detail' component={Detail} />
+          <Stack.Screen name={routes.DETAIL.routeName} component={Detail} />
+          <Stack.Screen name={routes.GRAPH.routeName} component={Graph} />
         </Stack.Navigator>
     </NavigationContainer>
   );

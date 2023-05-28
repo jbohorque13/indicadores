@@ -12,10 +12,15 @@ const colorSecondary = '#2452bc';
 
 interface Props {
   item: IndicatorItem;
-  handleNavigateDetail: (item: IndicatorItem) => void
+  handleNavigateDetail: (item: IndicatorItem) => void;
+  handleNavigateGraph: (item: IndicatorItem) => void
 }
 const IndicatorItem: React.FC<Props> = (props: Props) => {
-  const {item, handleNavigateDetail} = props;
+  const {
+    item, 
+    handleNavigateDetail, 
+    handleNavigateGraph
+  } = props;
 
   return (
     <Flex key={`${item.value}-id`}>
@@ -26,7 +31,7 @@ const IndicatorItem: React.FC<Props> = (props: Props) => {
           </TouchableOpacity>
           <Text variant='body2' color={colorSecondary}>{item.text2}</Text>
         </Flex>
-        <IconInfo />
+        <IconInfo onPress={() => handleNavigateGraph(item)} />
         <IconArrowRight />
       </Flex>
       <Divider style={styles.dividerStyle}/>

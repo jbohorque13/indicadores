@@ -15,4 +15,9 @@ export const routes: CommonJSON<RouteItem> = {
     screen: 'Detail',
     routeName: 'Detail'
   },
+  GRAPH: {
+    label: 'Graph',
+    screen: 'Graph',
+    routeName: 'Graph'
+  },
 };

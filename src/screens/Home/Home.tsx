@@ -15,20 +15,29 @@ type Nav = {
 }
 
 const Home = () => {
+  // navigations
   const navigation = useNavigation<Nav>();
-  // Handlers con hooks de React
+
+  // handlers 
   const handleNavigateDetail = React.useCallback((indicator: IndicatorItem) => {
     navigation.navigate(routes.DETAIL.routeName, {
       [queryParams.DETAIL.INDICATOR]: indicator,
     })
   }, []);
-  // hook .useMemo Para el segundo render no realiza el computo .map lo guarda en memoria.
+  const handleNavigateGraph = React.useCallback((indicator: IndicatorItem) => {
+    navigation.navigate(routes.GRAPH.routeName, {
+      [queryParams.GRAPH.INDICATOR]: indicator,
+    })
+  }, []);
+
+  // useMemos optimiza en memoria
   const renderListIndicators = React.useMemo<any>(() => {
     return indicators.map((item) => (
       <IndicatorItem
         key={item.value}
         item={item}
         handleNavigateDetail={handleNavigateDetail}
+        handleNavigateGraph={handleNavigateGraph}
       />
       )
     )
