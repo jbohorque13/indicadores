@@ -30,9 +30,9 @@ const Home = ({ route }: StackScreenProps<RootStackParamList>) => {
           || route.params?.indicator?.value === IndicatorType.EURO
           || route.params?.indicator?.value === IndicatorType.UF
         ) {
-          // setResources(await getResources(route.params?.indicator?.value))
+          setResources(await getResources(route.params?.indicator?.value))
         } else  {
-          // setResources(await getResourcesByYear(route.params?.indicator?.value))
+          setResources(await getResourcesByYear(route.params?.indicator?.value))
         }
       }
     }
