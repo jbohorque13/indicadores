@@ -1,0 +1,1 @@
+export {getResources, getResourcesByYear} from './api';

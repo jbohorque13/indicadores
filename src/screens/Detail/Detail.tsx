@@ -1,49 +1,63 @@
 import React from 'react';
+import { FlatList } from 'react-native';
 // navigation
 import { StackScreenProps } from '@react-navigation/stack';
-import { Flex, Text, Divider, Box } from '@react-native-material/core';
-// axios
-import axios from 'axios';
+import { Flex } from '@react-native-material/core';
+// api
+import {
+  getResources,
+  getResourcesByYear
+} from '~/api';
+// utils 
+import {IndicatorType} from '~/utils/enums/indicator';
 // styles
 import {styles} from './styles';
-// colores por defecto.
-const colorSecondary = '#2452bc';
-// constantes
-const url = 'https://api.cmfchile.cl/api-sbifv3/recursos_api/dolar/2022/05/dias/27?apikey=fbb7e11540cf65ae116d65b546b80b247bf7470e&formato=json';
+import ListItem from '~/components/Flex/ListItem/ListItem';
 
+interface ResourceItem {
+  Fecha: string;
+  Valor: string
+}
 
 const Home = ({ route }: StackScreenProps<RootStackParamList>) => {
-  const [resources, setResources] = React.useState();
-  // hook .useEffect para consultar la api
+  const [resources, setResources] = React.useState<CommonJSON<ResourceItem[]> | void>();
+  // Hooks useEfect
   React.useEffect(() => {
     async function main () {
-      // const http = await axios.get(url);
-      // console.log(http.data);
+      if (route && route.params){
+        console.log(route.params?.indicator?.value)
+        if (route.params?.indicator?.value === IndicatorType.DOLAR
+          || route.params?.indicator?.value === IndicatorType.EURO
+          || route.params?.indicator?.value === IndicatorType.UF
+        ) {
+          // setResources(await getResources(route.params?.indicator?.value))
+        } else  {
+          // setResources(await getResourcesByYear(route.params?.indicator?.value))
+        }
+      }
     }
     main();
   }, []);
-  // hook .useMemo Para el segundo render no realiza el computo .map lo guarda en memoria.
+  // Renders
+  const renderItem = ({ item }: any) => (
+    <ListItem key={item.Fecha} {...item} />
+  );
+  // Hooks useMemo
   const renderListIndicators = React.useMemo<any>(() => {
-    return ['Dólar','Euro','IPC','UF','UTM'].map(val => 
-      <Flex key={val}>
-        <Flex direction='row' justify='evenly'>
-          <Box w={160} style={{marginBottom: 6}}>
-            <Text variant='body2'>{val}</Text>
-          </Box>
-          <Box style={{marginBottom: 6}}>
-            <Text variant='body2'>{val}</Text>
-          </Box>
-        </Flex>
-        <Divider style={styles.dividerStyle}/>
-      </Flex> 
-    )
-  }, []);
+    if (route && route.params){
+      return <FlatList 
+        data={resources && resources[route.params?.indicator?.key] || []}
+        renderItem={renderItem}
+      />
+    }
+  }, [route, resources]);
 
   return  (
     <Flex fill style={styles.containerFlex}>
       {renderListIndicators}
     </Flex>
   );
+  
 }
 
 export default Home;

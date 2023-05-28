@@ -1,6 +1,6 @@
 declare interface RootStackParamList {
   Detail?: {
-    indicador?: string;
+    indicador?: IndicatorItem;
   };
   [x: string]: any;
 }
