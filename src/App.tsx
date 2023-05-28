@@ -14,6 +14,14 @@ import Detail from '~/screens/Detail';
 import Graph from '~/screens/Graph';
 // utils
 import { routes } from './utils/routes';
+// geo
+import Geolocation from '@react-native-community/geolocation';
+
+Geolocation.setRNConfiguration({
+  skipPermissionRequests: false,
+  authorizationLevel: 'whenInUse',
+  locationProvider: 'auto',
+})
 
 const Stack = createStackNavigator();
 
@@ -41,4 +49,4 @@ const App = () => {
   );
 }
 
-export default App;
+export default React.memo(App);

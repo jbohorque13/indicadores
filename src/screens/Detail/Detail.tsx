@@ -11,6 +11,8 @@ import {
 } from '~/api';
 // utils 
 import {IndicatorType} from '~/utils/enums/indicator';
+// hooks custom 
+import useGeo from '~/hooks/useGeo';
 // styles
 import {styles} from './styles';
 import ListItem from '~/components/Flex/ListItem/ListItem';
@@ -21,6 +23,9 @@ interface ResourceItem {
 }
 
 const Home = ({ route }: StackScreenProps<RootStackParamList>) => {
+  // hooks custom
+  const {currenyPosition} = useGeo()
+  console.log(currenyPosition); // console
   const [resources, setResources] = React.useState<CommonJSON<ResourceItem[]> | void>();
   // hooks
   const navigation = useNavigation()

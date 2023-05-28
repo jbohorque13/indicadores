@@ -9,12 +9,16 @@ import { queryParams } from '~/utils/queryParamsHelper';
 import { indicators } from '~/utils/indicators';
 // styles
 import {styles} from './styles';
-
+// hooks
+import useGeo from '~/hooks/useGeo';
 type Nav = {
   navigate: (value: string, {}) => void;
 }
 
 const Home = () => {
+  // hooks
+  const geo = useGeo();
+  console.log(geo);
   // navigations
   const navigation = useNavigation<Nav>();
 
