@@ -5,14 +5,15 @@ const colorSecondary = '#2452bc';
 export const styles = StyleSheet.create({
   containerFlex: {
     paddingTop: 10,
-    backgroundColor: '#ffffff'
+    backgroundColor: colorSecondary
   },
   dividerStyle: { marginVertical: 6 },
   textTitle: {
-    fontSize: 28,
-    color: colorSecondary,
+    color: '#ffffff',
+    fontSize: 32
   },
   text: {
+    color: '#ffffff',
     fontWeight: '600'
   }
 });

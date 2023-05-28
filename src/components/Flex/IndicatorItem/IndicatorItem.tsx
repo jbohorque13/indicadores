@@ -27,7 +27,7 @@ const IndicatorItem: React.FC<Props> = (props: Props) => {
       <Flex direction='row' items='center' style={{marginBottom: 6}}>
         <Flex fill direction='column'>
           <TouchableOpacity onPress={() => handleNavigateDetail(item)}> 
-            <Text variant='body1'>{item.text}</Text>
+            <Text style={styles.marginVertical} variant='body1' >{item.text}</Text>
           </TouchableOpacity>
           <Text variant='body2' color={colorSecondary}>{item.text2}</Text>
         </Flex>

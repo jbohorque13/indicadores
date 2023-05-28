@@ -5,5 +5,8 @@ export const styles = StyleSheet.create({
     paddingTop: 10,
     backgroundColor: '#ffffff'
   },
-  dividerStyle: { marginVertical: 6 }
+  dividerStyle: { marginVertical: 6 },
+  marginVertical: {
+    marginVertical: 12
+  }
 });
