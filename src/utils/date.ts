@@ -4,6 +4,13 @@ const timeFormat: Intl.DateTimeFormatOptions = { month: '2-digit', day: '2-digit
 // fecha actual
 const now = new Date();
 const lastTenDays = new Date(new Date().setHours(-240, 0, 0));
+const current = new Date();
+const dateLastYear = new Date(current.setFullYear(
+  now.getFullYear() - 1,
+  now.getMonth() + 1,
+  now.getDate()
+))
+const lastYearDate = `${dateLastYear.toLocaleDateString('es-ES', timeFormat).substring(6, 10)}/${dateLastYear.toLocaleDateString('es-ES', timeFormat).substring(3, 5)}`;
 const currentYear = now.getFullYear();
 // currentMonth formato yyyy/mm
 const currentMonth = `${now.toLocaleDateString('es-ES', timeFormat).substring(6, 10)}/${now.toLocaleDateString('es-ES', timeFormat).substring(3, 5)}`;
@@ -37,5 +44,6 @@ export {
   currentMonthFormated,
   yearInitial,
   monthInitial,
-  dayInitial
+  dayInitial,
+  lastYearDate
 }

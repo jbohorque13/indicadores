@@ -15,5 +15,8 @@ export const styles = StyleSheet.create({
   text: {
     color: '#ffffff',
     fontWeight: '600'
+  },
+  paddingHorizontal: {
+    paddingHorizontal: 12
   }
 });

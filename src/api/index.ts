@@ -1,1 +1,1 @@
-export {getResources, getResourcesByYear, getResourcesLastTenDays} from './api';
+export {getResources, getResourcesByYear, getResourcesLastTenDays, getResourcesByLastTwelveMonth} from './api';

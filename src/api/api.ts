@@ -11,7 +11,8 @@ import {
   beforeMonthFormated,
   dayInitial,
   yearInitial,
-  monthInitial
+  monthInitial,
+  lastYearDate
 } from '~/utils/date';
 // constantes
 const LAST_DAY_MONTH_FEBRUARY = 28;
@@ -54,8 +55,16 @@ async function getResourcesByYear (indicator: string) {
     .catch(error => console.error(error));
 }
 
+// Recursos por current year
+async function getResourcesByLastTwelveMonth (indicator: string) {
+  return instance.get(`/${indicator}/periodo/${lastYearDate}/${currentMonth}?apikey=${config.API_TOKEN}&formato=json`)
+    .then(response => response.data)
+    .catch(error => console.error(error));
+}
+
 export {
   getResources,
   getResourcesByYear,
-  getResourcesLastTenDays
+  getResourcesLastTenDays,
+  getResourcesByLastTwelveMonth
 }

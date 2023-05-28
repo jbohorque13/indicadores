@@ -1,8 +1,9 @@
 import React from 'react';
 import { FlatList } from 'react-native';
-// navigation
 import { StackScreenProps } from '@react-navigation/stack';
 import { Flex } from '@react-native-material/core';
+// navigation
+import { useNavigation } from '@react-navigation/core';
 // api
 import {
   getResources,
@@ -21,6 +22,16 @@ interface ResourceItem {
 
 const Home = ({ route }: StackScreenProps<RootStackParamList>) => {
   const [resources, setResources] = React.useState<CommonJSON<ResourceItem[]> | void>();
+  // hooks
+  const navigation = useNavigation()
+  // useLayoutEffect
+  React.useLayoutEffect(() => {
+    if (route && route.params){
+      navigation.setOptions({
+        title: route.params?.indicator.key
+      });
+    }
+  }, [navigation]);
   // Hooks useEfect
   React.useEffect(() => {
     async function main () {
@@ -59,4 +70,4 @@ const Home = ({ route }: StackScreenProps<RootStackParamList>) => {
   
 }
 
-export default Home;
+export default React.memo(Home);
