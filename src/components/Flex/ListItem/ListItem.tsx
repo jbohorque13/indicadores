@@ -26,4 +26,4 @@ const ListItem: React.FC<ResourceItem> = (item: ResourceItem) => {
   )
 }
 
-export default ListItem;
+export default React.memo(ListItem);
